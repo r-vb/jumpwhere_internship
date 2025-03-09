@@ -1,4 +1,5 @@
-# visit this link for more detailed information.
+# Class Diagram Exercises
+# visit the below link for more detailed information.
 
 Contains Two tabs: canvas | document
 
