@@ -14,6 +14,9 @@ SELECT * FROM Emp WHERE Ename LIKE 'S%';
 -- 4.
 SELECT * FROM Emp 
 WHERE DATEDIFF(YEAR, Hire_Date, GETDATE()) > 2;
+-- in SQLite, YEAR isn't working, so..
+SELECT * FROM Emp 
+WHERE (strftime('%Y', 'now') - strftime('%Y', Hire_Date)) > 2;
 
 -- 5.
 SELECT REPLACE(Ename, 'a', '#') AS ModifiedName, * FROM Emp;
