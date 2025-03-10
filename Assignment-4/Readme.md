@@ -49,9 +49,29 @@ SELECT Ename, (Sal + COALESCE(Commission, 0)) AS GrossSalary FROM Emp;
 
 -- 12.
 ALTER TABLE Emp MODIFY Ename VARCHAR(250);
+-- SQLite doesn't support alter directly, so had to remove table and create new again...
+ALTER TABLE Emp RENAME TO Emp_temp;
+
+CREATE TABLE Emp (
+    EmpNo INT PRIMARY KEY,
+    Ename VARCHAR(250),
+    Sal DECIMAL(10,2),
+    Hire_Date DATE,
+    Commission DECIMAL(10,2),
+    DeptNo INT,
+    Mgr INT,
+    FOREIGN KEY (DeptNo) REFERENCES Dept(DeptNo),
+    FOREIGN KEY (Mgr) REFERENCES Emp(EmpNo)
+);
+
+INSERT INTO Emp 
+SELECT * FROM Emp_temp;
+
+DROP TABLE Emp_temp;
 
 -- 13.
 SELECT GETDATE();
+
 -- 14.
 CREATE TABLE STUDENT (
     StudentID INT PRIMARY KEY,
